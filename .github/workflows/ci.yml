@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      # Tests use the offline fake LLM: no API key, no network, no cost.
+      - run: pytest
+        env:
+          LLM_PROVIDER: fake
+      - name: Eval smoke test (fake LLM)
+        run: python evals/run_evals.py --fake --limit 3 --out /tmp/results.md

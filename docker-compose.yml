@@ -1,0 +1,10 @@
+services:
+  api:
+    build: .
+    image: content-to-post-agent:latest
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data   # scheduled_posts.json survives container restarts
+    restart: unless-stopped

@@ -1,0 +1,7 @@
+Most teams treat the weekly planning meeting as the place where work gets decided. In practice, the meeting is where decisions get announced. The real thinking happens before it, or not at all.
+
+A small product team tried an experiment for six weeks. Every proposal had to arrive as a one-page written brief at least 24 hours before the meeting. The brief had to state the problem, the options considered, and one recommended option.
+
+Two things changed. Meetings dropped from an average of 75 minutes to 30, because people arrived having already read and commented. The number of decisions reversed in the following month fell from five to one.
+
+The briefs were not longer documents. They were shorter. The one-page limit forced authors to cut background and get to the trade-off. Writing turned out to be a thinking tool first and a communication tool second.
