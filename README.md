@@ -4,6 +4,12 @@
 
 A LangGraph agent that turns an article (URL or text) into platform-ready **LinkedIn** and **X** posts, checks them with an LLM judge, rewrites the weak ones, and waits for a **human to approve** before anything is scheduled.
 
+## Demo
+
+![Content-to-Post Agent demo](docs/assets/demo.gif)
+
+*Paste an article → the LangGraph agent plans, writes, critiques and rewrites → you approve → posts get scheduled.*
+
 Built with Python 3.11, LangGraph, LangChain, OpenAI (`gpt-4o-mini` by default), Pydantic and FastAPI.
 
 ---
