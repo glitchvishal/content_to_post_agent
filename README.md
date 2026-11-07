@@ -83,12 +83,26 @@ uvicorn api.main:app --reload
 # Interactive docs: http://localhost:8000/docs
 ```
 
+### Run the full app (backend + web UI)
+
+```bash
+# Terminal 1: backend on :8000  (add LLM_PROVIDER=fake to try it with no API key)
+source .venv/bin/activate
+uvicorn api.main:app --reload
+
+# Terminal 2: web UI on :3001
+cd web && cp .env.example .env.local && npm install && npm run dev
+```
+
+Open http://localhost:3001, paste a URL or text, and watch the run live. The UI is in [`web/`](web/README.md). The backend allows it through `ALLOWED_ORIGINS` (default `http://localhost:3001,http://localhost:3000`). With Docker, `docker compose up --build` starts both.
+
 ### Docker
 
 ```bash
 cp .env.example .env             # add your OPENAI_API_KEY
 docker compose up --build
-# API on http://localhost:8000; scheduled posts land in ./data/scheduled_posts.json
+# API on http://localhost:8000, web UI on http://localhost:3001
+# scheduled posts land in ./data/scheduled_posts.json
 ```
 
 ## API examples
@@ -209,6 +223,7 @@ agent/
   platforms.py    LinkedIn and X rules
   __main__.py     CLI
 api/              FastAPI app and run manager (SSE)
+web/              Next.js review UI (live progress, approve / edit / reject)
 evals/            dataset, runner, results
 tests/            24 offline tests (fetching, graph paths, routing, API)
 docs/             architecture, product, interview notes
@@ -230,7 +245,6 @@ docs/             architecture, product, interview notes
 - Parallel per-platform writing and judging with LangGraph's `Send` API.
 - "Reject with feedback" that routes back to `write` instead of ending.
 - Real publishing via LinkedIn / X APIs (OAuth per user, rate limits, idempotency keys, a publish queue with retries).
-- A small review UI on top of the SSE stream.
 - Calibrate the judge against a small set of human-labelled posts; track eval scores in CI on every prompt change.
 
 ## License

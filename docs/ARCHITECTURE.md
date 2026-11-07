@@ -5,6 +5,8 @@ This document explains how the agent is put together and why. File references po
 ## 1. The big picture
 
 ```
+ Web UI (web/, Next.js) ──HTTP + SSE──┐
+                                      ▼
             ┌──────────────── CLI (agent/__main__.py)
 input ──────┤
             └──────────────── FastAPI (api/main.py) ── RunManager (api/runs.py) ── SSE events
@@ -18,7 +20,7 @@ input ──────┤
                     LLMClient (agent/llm.py): OpenAI or FakeLLM
 ```
 
-The CLI, the API and the eval runner all drive **the same compiled graph**. Nothing about the agent's logic lives in the interfaces.
+The web UI only talks to the API (cross-origin, so the API needs `ALLOWED_ORIGINS` set). The CLI, the API and the eval runner all drive **the same compiled graph**. Nothing about the agent's logic lives in the interfaces.
 
 ## 2. State schema (`agent/state.py`)
 
