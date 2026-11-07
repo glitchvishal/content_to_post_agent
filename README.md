@@ -27,12 +27,6 @@ This agent treats post generation as a small workflow with quality gates, not a 
 
 I built and run a GenAI content-to-social product in production. This project rebuilds the core idea as an explicit agent graph, so each step is inspectable, testable and measurable.
 
-## Demo
-
-![Demo](docs/demo.gif)
-
-<!-- Record a 20-30s GIF of `python -m agent run --url ...` (e.g. with https://github.com/charmbracelet/vhs or any screen recorder) and save it as docs/demo.gif. -->
-
 ## How it works
 
 ```mermaid
